@@ -13,7 +13,9 @@ export default defineConfig(({ mode }) => {
     if (!base.startsWith("https://")) {
       throw new Error(
         `VITE_URL_BASE must be an https:// URL for a production build, got "${base}". ` +
-          `Set it in .env.production or as a VITE_URL_BASE variable in the build environment.`
+          `Set it in .env.production, or as a VITE_URL_BASE build variable if the host ` +
+          `overrides it -- a VITE_URL_BASE in the build environment takes priority over ` +
+          `the .env.production file, so check the service's environment variables too.`
       );
     }
   }

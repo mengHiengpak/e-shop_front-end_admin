@@ -6,6 +6,12 @@ services:
     autoDeploy: true
     buildCommand: npm ci && npm run build
     staticPublishPath: ./dist
+    # Vite's loadEnv gives process.env priority over .env.production, so an env var
+    # left on the service silently wins over the committed file. Declaring it here
+    # keeps the blueprint the single source of truth and syncs the value on deploy.
+    envVars:
+      - key: VITE_URL_BASE
+        value: https://e-shop-back-end-vpfq.onrender.com/api
     # React Router owns every path, so the CDN has to hand back index.html for
     # anything that is not a real file. Without this, opening or refreshing
     # /signin returns 404 from the CDN and the app never boots. Render serves an
