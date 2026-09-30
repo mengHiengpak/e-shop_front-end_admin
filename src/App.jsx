@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router"
 import { Toaster } from "react-hot-toast"
-import { lazy, Suspense } from "react"
+import { lazy, Suspense, useEffect } from "react"
 
 const Signin = lazy(() => import("./pages/auth/Signin"))
 const Signup = lazy(() => import("./pages/auth/Signup"))
@@ -39,6 +39,10 @@ const Unauthorization = lazy(() => import("./pages/Unauthorization"))
 const Loading = lazy(() => import("./pages/Loading"))
 
 function App() {
+  useEffect(() => {
+    document.title = import.meta.env.VITE_APP_NAME || "E-shop Dashboard"
+}, [])
+
   return (
     <>
       <Toaster />
